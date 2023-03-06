@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kolker+Brush&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 600px;
+  background: #e69b00;
+}
+div {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+  margin: 40px 0 0 0;
+  border-radius: 12px;
+}
+h1 {
+  font-family: 'Kolker Brush', cursive;
+  text-align: center;
+  font-size: 75px;
+  color: #de0a26;
+  margin: 60px 0 0 0;
+}
+h2 {
+  text-align: center;
+  color: orange;
+  margin: 0px 0 70px 0;
+  font-family: 'Kolker Brush', cursive;
+}
+p {
+  font-family: 'Rubik Bubbles', cursive;
+  color: rgba(250,0,0);
+  background: black;
+  background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom, rgba(250,50,10,1), rgba(0,0,0,.4));
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+  padding: 10px;
+  line-height: 28px;
+  text-align: justify;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  height: 30px;
+  transition: height .5s;
+  -webkit-transition: height .5s;
+  -moz-transition: height .5s;
+}
+
+small {
+  opacity: 0;
+}
+.show-description p {
+  height: 150px;
+}
+.show-description small {
+  opacity: 1;
+}
+
+.first{
+  background-image: url("https://cdn.sanity.io/images/w6ol9cun/production/0fbc5d588c01b4ca1b712061daf2d802154c7ca5-2000x1080.jpg");
+}
+.second{
+  background-image: url("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2005%2F06%2F22%2F429048911_6152425885001_6152427053001-vs.jpg");
+}
+.dessert{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHnERDSPO_6Jb7Oy4FHHmAgxw5SqU9uTDQrSSSoZ8diyoawPwKuOu8FAp0ESTPtSAE6WA&usqp=CAU");
+}
+.price {
+  float: right;
+  color: green;
+}
+input {
+	font-size: 22px;
+}
+
+@media (max-width:500px) {
+  h1 {
+  font-size: 50px;
+  margin-top: 20px;
+  line-height: 40px;
+    }
+  h2 {
+    font-size: 20px;
+    margin: 20px 0 30px 0;
+  }
+  div {
+    margin: 20px 12px 0 12px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  small {
+    font-size: 16px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<h1>Riz's restaurant</h1>
+<h2>A Fast food New York City Restaurant</h2>
+<div class="first">
+	<br><br>
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Peperoni Pizza <span class="price">$10</span><br />
+  <small>Peperoni Pizza, made off of the finest bread, sauce and peperoni. Bread came from italy, peperoni came from the finest quality, and sauce is 100% natural. </small></p>
+</div>
+
+
+<input type="submit">
+<br><br>
+
+
+<div class="second show-description">
+	<br><br>
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Burger <span class="price">$5</span><br />
+  <small>Burger, contains: tomato, onions, lettuce, beef. All vegetables are naturally grown in the wild, beef comes from healthy cows raised in the finest environment.</small></p>
+</div>
+
+
+<input type="submit">
+<br><br>
+<div class="dessert">
+	<br><br>
+	
+	
+	
+	<input type="number" min="0" style="width: 50px" class="quantities">
+  <p>Chicken wings <span class="price">$20</span><br />
+  <small>Chicken wings comes wth a lot of vegetables that are naturally grown, the chicken comes from a farm that raise chicken in a natural healthy environment. It has a total if 8 pieces.</small></p>
+  
+</div>
+
+  <input id="Name" placeholder="Your Name">
+  <input id="Email" placeholder="Your email">
+  <input type="submit" id="submit">
+<br><br>
+
+
+
+<br><br>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAvVCAtewf5e2MUpFwnZdXGhUbbf5V28wU",
+    authDomain: "database-3-70e12.firebaseapp.com",
+    databaseURL: "https://database-3-70e12-default-rtdb.firebaseio.com",
+    projectId: "database-3-70e12",
+    storageBucket: "database-3-70e12.appspot.com",
+    messagingSenderId: "420649299723",
+    appId: "1:420649299723:web:0dae3893e293347aa2bc0e"
+  };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+	const db = getDatabase(app);
+    const Name = document.querySelector("#Name") 
+    const Email = document.querySelector("#Email")
+    document.querySelector('#submit').addEventListener('click', Submit)
+	const prices = document.querySelectorAll(".price")
+	const quantities = document.querySelectorAll(".quantities")
+	const itemsList = ["Pizza", "Burger", "Chicken wings"]
+	
+	
+	
+	function Submit() {
+	  const timestamp = buildTimestamp()
+		let total = 0
+    	  let cart = { }
+    	  for  (let i=0; i<quantities.length; i=i+1) {
+    	  	if (quantities[i].value != "0" && quantities[i].value != "") {	
+			  let price = prices[i].innerHTML.replace('$', '')
+			  total = total + quantities[i].value * price 
+				cart[itemsList[i]] = parseInt(quantities[i].value) 
+    	  	}
+    	  	quantities[i].value = ""
+    	  }
+		  
+		
+  
+	  set(ref(db, timestamp), {
+		  Name: Name.value,
+	      email: Email.value,
+		  cart: cart,
+		  totalPrice: total,
+		  paid: "not yet",
+	  });
+
+	  Name.value = ""
+	  Email.value = ""
+	  
+	}
+
+	function buildTimestamp() {
+		  const now = new Date();
+		  let timestamp = now.getFullYear().toString() + "/";
+		  //const month = now.toLocaleString('default', { month: 'long' });
+
+		  let month = now.getMonth()+1   //add 1 because Javascript uses 0 for January
+		  month = month.toString()
+		  month = addLeadingZero(month)
+		  timestamp += month + "/"; 
+
+		  let date = now.getDate().toString()
+		  date = addLeadingZero(date)
+		  timestamp += date + "/";
+
+		  let hours = now.getHours().toString()
+		  hours = addLeadingZero(hours)
+		  timestamp += hours + ":";
+
+		  let minutes = now.getMinutes().toString()
+		  minutes = addLeadingZero(minutes)
+		  timestamp += minutes + ":";
+
+		  let seconds = now.getSeconds().toString()
+		  seconds = addLeadingZero(seconds)
+		  timestamp += seconds;
+  
+		  return timestamp
+		}
+	
+		function addLeadingZero(units) {
+			if (units.length < 2) {
+				units = "0" + units
+			}
+			return units
+		}
+
+  
+	
+	
+  </script>
+	
+	
+	
+	
+<script>
+	$('div').on('click', function() {
+	  $(this).toggleClass('show-description');
+	});
+</script>
+
+</body>
